@@ -6,6 +6,9 @@ const About = () => {
     <div>
         <h1>About</h1>
         <Link href={"/"}>Home</Link>
+        {" "}
+        <Link href={"/about/child-about-one"}>Child One</Link>
+        <Link href={"/about/child-about-two"}>Child Two</Link>
     </div>
   )
 }
