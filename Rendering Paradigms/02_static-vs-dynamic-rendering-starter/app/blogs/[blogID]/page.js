@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-const Blogs = async ({ params }) => {
-  const { blogID } = await params;
+const Blogs = async ({params}) => {
+  const blogID = await params.blogID
   console.log(blogID);
+
   return (
     <>
       <nav>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const Services = () => {
+  console.log("Services Page");
   return (
     <>
       <nav>

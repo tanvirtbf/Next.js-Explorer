@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Blogs = () => {
-  console.log('Blogs');
+  console.log('Blog Page');
   return (
     <>
       <nav>
