@@ -1,17 +1,21 @@
 import Link from "next/link";
 
+// export const dynamicParams = false
+export const dynamicParams = false
+// export const revalidate = 5
+
 export async function generateStaticParams() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const data = await response.json();
-  console.log(data);
-  return data.map(({ id }) => ({ blogID: `${id}` }));
-  // return [
-  //   { blogID: "1" },
-  //   { blogID: "2" },
-  //   { blogID: "3" },
-  //   { blogID: "4" },
-  //   { blogID: "5" },
-  // ];
+  // const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+  // const data = await response.json();
+  // console.log(data);
+  // return data.map(({ id }) => ({ blogID: `${id}` }));
+  return [
+    { blogID: "1" },
+    { blogID: "2" },
+    { blogID: "3" },
+    { blogID: "4" },
+    { blogID: "5" },
+  ];
 }
 
 const Blog = async ({ params }) => {
@@ -45,6 +49,7 @@ const Blog = async ({ params }) => {
       </nav>
       <div>
         <h1>Welcome to Our Blog {blogID}</h1>
+        <h2>{new Date().toLocaleString()}</h2>
         <p>This is blog {blogID} page.</p>
       </div>
     </>
