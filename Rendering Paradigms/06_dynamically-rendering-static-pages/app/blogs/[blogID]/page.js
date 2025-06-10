@@ -2,6 +2,16 @@ import Link from "next/link";
 
 export const dynamicParams = false;
 
+export function generateStaticParams(){
+  return [
+    {blogID: "1"},
+    {blogID: "2"},
+    {blogID: "3"},
+    {blogID: "4"},
+    {blogID: "5"},
+  ]
+}
+
 // ISR
 // export const revalidate = 5;
 
