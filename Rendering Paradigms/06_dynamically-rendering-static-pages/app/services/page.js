@@ -2,15 +2,20 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 
 // export const dynamic = "auto";
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 // export const dynamic = "error";
 // export const dynamic = "force-static";
 
-const Services = async ({ searchParams }) => {
+const Services = async (props) => {
+  const cookie = await cookies();
+  console.log(cookie['Name']);
+  // const search = await props.searchParams
+  // console.log(search);
+
   // const search = await searchParams;
   // console.log(search);
-  const myCookies = await cookies();
-  console.log(myCookies);
+  // const myCookies = await cookies();
+  // console.log(myCookies);
 
   console.log("Running Services Component");
   return (
