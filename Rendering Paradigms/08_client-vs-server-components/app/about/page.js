@@ -1,8 +1,11 @@
+"use client"
 import Link from "next/link";
 
 const About = () => {
   console.log('About Page');
-  console.log(localStorage);
+  if(typeof localStorage !== 'undefined'){
+    console.log(localStorage);
+  }
   return (
     <>
       <nav>
