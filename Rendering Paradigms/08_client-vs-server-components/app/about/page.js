@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const About = () => {
   console.log('About Page');
+  console.log(localStorage);
   return (
     <>
       <nav>
