@@ -1,15 +1,13 @@
+async function fetchData(url) {
+  const response = await fetch(url);
+  return await response.json();
+}
+
 const Todos = async () => {
-
-  const [response, slowResponse2s, slowResponse3s] = await Promise.all([
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5"),
-    fetch("https://procodrr.vercel.app/?sleep=2000"),
-    fetch("https://procodrr.vercel.app/?sleep=3000"),
-  ]);
-
   const [todos, data2s, data3s] = await Promise.all([
-    response.json(),
-    slowResponse2s.json(),
-    slowResponse3s.json(),
+    fetchData("https://jsonplaceholder.typicode.com/todos?_limit=5"),
+    fetchData("https://procodrr.vercel.app/?sleep=2000"),
+    fetchData("https://procodrr.vercel.app/?sleep=3000"),
   ]);
 
   return (
