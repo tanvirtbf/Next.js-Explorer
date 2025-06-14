@@ -1,16 +1,16 @@
 const Todos = async () => {
-  const response = await fetch(
-    "https://jsonplaceholder.typicode.com/todos?_limit=5"
-  );
-  const todos = await response.json();
 
-  const slowResponse2s = await fetch("https://procodrr.vercel.app/?sleep=2000");
-  const data2s = await slowResponse2s.json();
-  console.log(data2s);
+  const [response, slowResponse2s, slowResponse3s] = await Promise.all([
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5"),
+    fetch("https://procodrr.vercel.app/?sleep=2000"),
+    fetch("https://procodrr.vercel.app/?sleep=3000"),
+  ]);
 
-  const slowResponse3s = await fetch("https://procodrr.vercel.app/?sleep=3000");
-  const data3s = await slowResponse3s.json();
-  console.log(data3s);
+  const [todos, data2s, data3s] = await Promise.all([
+    response.json(),
+    slowResponse2s.json(),
+    slowResponse3s.json(),
+  ]);
 
   return (
     <>
