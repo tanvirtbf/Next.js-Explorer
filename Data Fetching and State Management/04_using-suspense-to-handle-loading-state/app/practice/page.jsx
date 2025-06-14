@@ -1,17 +1,21 @@
-import React from 'react'
+import Fallback from '@/components/practice/Fallback'
+import React, { lazy, Suspense } from 'react'
 
+const ComOne = lazy(() => import("../../components/practice/ComOne"))
+const ComTwo = lazy(() => import("../../components/practice/ComTwo"))
 
 const Practice = async () => {
 
-    const response1 = await fetch("https://procodrr.vercel.app/?sleep=2000")
-    const data1 = await response1.json()
-
-    const response2 = await fetch("https://procodrr.vercel.app/?sleep=3000")
-    const data2 = await response2.json()
-
-
   return (
-    <div>Practice</div>
+    <div>
+        <h2>Practice Page</h2>
+        <Suspense fallback={<Fallback text="Com1" />}>
+            <ComOne />
+        </Suspense>
+        <Suspense fallback={<Fallback text="Com2" />}>
+            <ComTwo />
+        </Suspense>
+    </div>
   )
 }
 
