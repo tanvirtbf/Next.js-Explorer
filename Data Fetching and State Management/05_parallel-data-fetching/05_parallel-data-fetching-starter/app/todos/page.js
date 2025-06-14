@@ -3,12 +3,14 @@ async function fetchData(url) {
   return await response.json();
 }
 
+const urlLists = [
+  "https://jsonplaceholder.typicode.com/todos?_limit=5",
+  "https://procodrr.vercel.app/?sleep=2000",
+  "https://procodrr.vercel.app/?sleep=3000",
+]
+
 const Todos = async () => {
-  const [todos, data2s, data3s] = await Promise.all([
-    fetchData("https://jsonplaceholder.typicode.com/todos?_limit=5"),
-    fetchData("https://procodrr.vercel.app/?sleep=2000"),
-    fetchData("https://procodrr.vercel.app/?sleep=3000"),
-  ]);
+  const [todos, data2s, data3s] = await Promise.all(urlLists.map(item => fetchData(item))); 
 
   return (
     <>
