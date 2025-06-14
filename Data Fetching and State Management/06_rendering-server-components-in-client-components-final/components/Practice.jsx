@@ -6,14 +6,10 @@ const Practice = () => {
   return (
     <div>
       <h1>Practice Page</h1>
-      <DemoOne
-        content={
-          <>
-            <h1>Demo One</h1>
-            <DemoTwo />
-          </>
-        }
-      />
+      <DemoOne>
+        <h1>Demo One</h1>
+        <DemoTwo />
+      </DemoOne>
     </div>
   );
 };

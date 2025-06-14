@@ -1,9 +1,9 @@
 "use client"
 
-const DemoOne = ({ content }) => {
+const DemoOne = ({ children }) => {
   return (
     <div>
-        {content}
+        {children}
     </div>
   )
 }
