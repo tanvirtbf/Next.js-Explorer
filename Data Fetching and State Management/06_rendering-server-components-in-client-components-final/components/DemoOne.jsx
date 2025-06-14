@@ -1,12 +1,9 @@
 "use client"
 
-import DemoTwo from "./DemoTwo"
-
-const DemoOne = () => {
+const DemoOne = ({ content }) => {
   return (
     <div>
-        <h1>Demo One</h1>
-        <DemoTwo />
+        {content}
     </div>
   )
 }
