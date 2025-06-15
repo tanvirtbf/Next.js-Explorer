@@ -1,17 +1,6 @@
 import React from "react";
 
-async function fetchData(url) {
-  const response = await fetch(url);
-  return await response.json();
-}
-
-const urlsList = [
-    "https://procodrr.vercel.app/?sleep=2000",
-    "https://procodrr.vercel.app/?sleep=3000"
-]
-
 const Prac = async () => {
-  const [data1, data2] = await Promise.all(urlsList.map(item => fetchData(item)));
 
   return (
     <div>
