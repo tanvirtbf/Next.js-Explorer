@@ -5,11 +5,13 @@ async function fetchData(url) {
   return await response.json();
 }
 
+const urlsList = [
+    "https://procodrr.vercel.app/?sleep=2000",
+    "https://procodrr.vercel.app/?sleep=3000"
+]
+
 const Prac = async () => {
-  const [data1, data2] = await Promise.all([
-    fetchData("https://procodrr.vercel.app/?sleep=2000"),
-    fetchData("https://procodrr.vercel.app/?sleep=3000"),
-  ]);
+  const [data1, data2] = await Promise.all(urlsList.map(item => fetchData(item)));
 
   return (
     <div>
