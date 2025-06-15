@@ -1,8 +1,13 @@
 import React from 'react'
 
-const ComTwo = () => {
+const ComTwo = async () => {
+    const res = await fetch("https://procodrr.vercel.app/?sleep=4000")
+    const data = await res.json()
   return (
-    <div>ComTwo</div>
+    <div>
+        <h1>Component Two</h1>
+        <h3>{data.message}</h3>
+    </div>
   )
 }
 
