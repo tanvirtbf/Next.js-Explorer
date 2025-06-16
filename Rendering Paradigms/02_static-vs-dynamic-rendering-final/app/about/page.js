@@ -1,7 +1,8 @@
+"use client";
 import Link from "next/link";
 
 const About = () => {
-  console.log('About Page');
+  console.log("About Page");
   return (
     <>
       <nav>
