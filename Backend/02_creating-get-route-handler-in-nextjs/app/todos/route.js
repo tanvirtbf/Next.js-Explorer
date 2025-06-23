@@ -6,9 +6,13 @@ export function GET() {
   ];
 
   console.log("Running GET request in todos route");
-  return new Response(JSON.stringify(todosData), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+
+  return Response.json(todosData); 
+
+  // return new Response(JSON.stringify(todosData), {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
 }
+
