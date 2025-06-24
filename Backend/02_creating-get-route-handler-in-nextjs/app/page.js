@@ -49,9 +49,15 @@ export default function Home() {
 
   useEffect(() =>{
     async function getData(){
-      const res = await fetch("http://localhost:3000/todo");
+      const requestObj = new Request("http://localhost:3000/todo", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      });
+      const res = await fetch(requestObj);
       const data = await res.json();
-      console.log(data);
+      console.log('DATA : ',data);
     }
     getData();
   }, [])
