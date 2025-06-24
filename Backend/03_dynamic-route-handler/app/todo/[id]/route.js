@@ -10,14 +10,6 @@ const todosData = [
 
 export async function GET(req, res){
     const param= await res.params.id
-    for(let i=0; i<todosData.length; i++){
-        if(todosData[i].id===param){
-            return new Response(JSON.stringify(todosData[Number(param)]), {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-        }
-    }
-    return Response.json({message: "Not Found"});
+    const todo = todosData.find((todo) => param==todo.id)
+    return Response.json(todosData[param-1])
 }
