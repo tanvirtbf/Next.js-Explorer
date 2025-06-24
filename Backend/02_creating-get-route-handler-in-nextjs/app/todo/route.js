@@ -7,10 +7,11 @@ const todosData = [
 
 export function GET(req, res) {
     console.log('Running Get Rounte Handler');
-    return new Response(JSON.stringify(todosData), {
-        headers: {
-            "Content-Type": "application/json",
-        }
-    });
+    return Response.json(todosData)
+    // return new Response(JSON.stringify(todosData), {
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     }
+    // });
 }
 
