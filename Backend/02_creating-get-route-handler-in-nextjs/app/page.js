@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "@/components/TodoList";
 import TodoForm from "@/components/TodoForm";
 import { useTheme } from "next-themes";
@@ -46,6 +46,15 @@ export default function Home() {
       todos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
     );
   };
+
+  useEffect(() =>{
+    async function getData(){
+      const res = await fetch("http://localhost:3000/todo");
+      const data = await res.json();
+      console.log(data);
+    }
+    getData();
+  }, [])
 
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
