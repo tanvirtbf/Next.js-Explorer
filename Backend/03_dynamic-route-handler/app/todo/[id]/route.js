@@ -11,5 +11,11 @@ const todosData = [
 export async function GET(req, res){
     const param= await res.params.id
     const todo = todosData.find((todo) => param==todo.id)
-    return Response.json(todosData[param-1])
+    if(!todo){
+        return Response.json(
+            {error: "Todo Not Found!"},
+            {status: 404}
+        )
+    }
+    return Response.json(todo)
 }
