@@ -13,6 +13,7 @@ export function GET(req, res) {
             "Content-Type": "application/json",
         },
         status: 587,
+        statusText: "Custom Status Text",
     });
 }
 
