@@ -10,7 +10,7 @@ export function GET(req, res) {
     // return Response.json(todosData)
     return new Response(JSON.stringify(todosData), {
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "audio/mp3",
         },
         status: 587,
         statusText: "Custom Status Text",
