@@ -1,19 +1,10 @@
-const todosData = [
-  { id: 1, text: "Learn Next.js 15", completed: false },
-  { id: 2, text: "Master Node.js", completed: true },
-  { id: 3, text: "Learn MongoDB", completed: true },
-];
+import todosData from "../../todos.json";
 
-
-export function GET(req, res) {
-    console.log('Running Get Rounte Handler');
-    // return Response.json(todosData)
+export async function GET(req, res) {
+    console.log('Running Get Handler!');
     return new Response(JSON.stringify(todosData), {
         headers: {
-            "Content-Type": "audio/mp3",
-        },
-        status: 587,
-        statusText: "Custom Status Text",
-    });
+            "Content-Type": "application/json"
+        }
+    })
 }
-
