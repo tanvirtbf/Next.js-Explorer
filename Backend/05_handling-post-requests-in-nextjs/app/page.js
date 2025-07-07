@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "@/components/TodoList";
 import TodoForm from "@/components/TodoForm";
 import { useTheme } from "next-themes";
@@ -15,6 +15,22 @@ const todosData = [
 export default function Home() {
   const [todos, setTodos] = useState(todosData);
   const { theme = "dark", setTheme } = useTheme();
+
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const requestObject = new Request("http://localhost:3000/api/todo", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(todos),
+  //     });
+  //     const response = fetch(requestObject);
+  //     const data = await response.json();
+  //     console.log(data);
+  //   };
+  //   fetchPost()
+  // }, [todos]);
 
   // Add new todo
   const addTodo = (text) => {
