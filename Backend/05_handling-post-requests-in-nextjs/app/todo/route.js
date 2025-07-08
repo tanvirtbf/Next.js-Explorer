@@ -11,3 +11,11 @@ export async function POST(req, res){
     await writeFile("todos.json", JSON.stringify(todosData))
     return Response.json(todosData)
 }
+
+
+export async function DELETE(req, res){
+    const body = await req.json()
+    let todoData = todosData.filter(todo => todo.id !== body.id)
+    await writeFile("todos.json", JSON.stringify(todoData))
+    return Response.json(todoData)
+}
