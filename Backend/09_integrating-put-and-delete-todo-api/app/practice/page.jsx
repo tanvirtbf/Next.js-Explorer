@@ -1,84 +1,67 @@
 "use client";
+import React from "react";
 
-import { useEffect, useState } from "react";
-import TodoList from "@/components/TodoList";
-import TodoForm from "@/components/TodoForm";
-import { useTheme } from "next-themes";
-import { MoonIcon, SunIcon } from "lucide-react";
+const Practice = () => {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
-export default function Home() {
-  const [todos, setTodos] = useState([]);
-  const { theme = "dark", setTheme } = useTheme();
+  const [data, setData] = React.useState([]);
 
-  useEffect(() =>{
-    fetchTodos()
-  }, [])
+  function handleSubmit(e) {
+    e.preventDefault();
 
-  const fetchTodos = async () => {
-    const response = await fetch('/todo')
-    const data = await response.json()
-    setTodos(data.reverse());
-  };
+    setData((prev) => [...prev, { id:crypto.randomUUID(), username, password }]);
 
-  // Add new todo
-  const addTodo = async (text) => {
-    const response = await fetch('/todo', {
-      method: "POST",
-      body: JSON.stringify({ text })
-    })
-    const newTodo = await response.json();
-    setTodos([newTodo, ...todos]);
-  };
+    setUsername("");
+    setPassword("");
+  }
 
-  // Delete todo
-  const deleteTodo = async (id) => {
-    await fetch(`/todo/${id}`, {
-      method: "DELETE",
-    });
-    fetchTodos();
-  };
-
-  // Toggle todo completion
-  const toggleTodo = async (id) => {
-
-  };
-
-  // Update todo text
-  const updateTodo = async (id, newText) => {
-
-  };
+  function handleUpdate(id){
+    console.log(id);
+  }
+  function handleDelete(id){
+    console.log(id);
+  }
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
-      <div className="w-full max-w-lg">
-        <header className="mb-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-            Todo App
-          </h1>
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full hover:bg-muted transition-colors"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? (
-              <SunIcon className="h-5 w-5" />
-            ) : (
-              <MoonIcon className="h-5 w-5" />
-            )}
-          </button>
-        </header>
+    <div className="p-4 flex flex-col gap-4">
+      <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="border border-gray-300 rounded-md p-2"
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          className="border border-gray-300 rounded-md p-2"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="bg-blue-500 text-white rounded-md p-2">
+          Submit
+        </button>
+      </form>
 
-        <TodoForm addTodo={addTodo} />
-
-        <main className="mt-6">
-          <TodoList
-            todos={todos}
-            deleteTodo={deleteTodo}
-            toggleTodo={toggleTodo}
-            updateTodo={updateTodo}
-          />
-        </main>
+      <div className="flex flex-col gap-2">
+        {data.map((item, index) => (
+          <div key={index} className="flex gap-2 justify-between border p-4 rounded-2xl">
+            <div className="flex gap-2 items-center">
+              <p>UserName : {item.username}</p>
+              <div className="w-1 h-full bg-black rounded-full"></div>
+              <p>Password : {item.password}</p>
+            </div>
+            <div className="flex gap-4">
+              <button className="bg-blue-500 text-white rounded-md p-2" onClick={()=>handleUpdate(item.id)}>Update</button>
+              <button className="bg-blue-500 text-white rounded-md p-2" onClick={() => handleDelete(item.id)}>Delete</button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default Practice;
