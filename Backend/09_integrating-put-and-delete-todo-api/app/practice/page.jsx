@@ -12,8 +12,19 @@ const Practice = () => {
 
     setData((prev) => [...prev, { id:crypto.randomUUID(), username, password }]);
 
+    handleAdd();
+
     setUsername("");
     setPassword("");
+  }
+
+  async function handleAdd(){
+    const response = await fetch('/api/practice', {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    const data = await response.json();
+    console.log(data);
   }
 
   function handleUpdate(id){
