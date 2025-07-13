@@ -22,7 +22,15 @@ export default function RegisterPage() {
       body: JSON.stringify({ name, email, password }),
     })
 
-    // router.push("/login");
+    const data = await response.json();
+
+    if(data.success) {
+      router.push("/login");
+    } else {
+      console.log(data.error);
+      alert(data.error);
+    }
+
   };
 
   return (

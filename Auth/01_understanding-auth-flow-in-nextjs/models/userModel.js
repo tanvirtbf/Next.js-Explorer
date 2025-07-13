@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const users = mongoose.model.users || mongoose.model('users', {
+const users = mongoose.models.users || mongoose.models('users', {
     name: {
         type: String,
         required: true
