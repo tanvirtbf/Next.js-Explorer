@@ -1,17 +1,17 @@
 import { readFile, writeFile } from "node:fs/promises";
 import todos from "../../todos";
-import { db } from "@/lib/connectDB";
-
+import { connectDB } from "@/lib/connectDB";
+import mongoose from "mongoose";
 
 export async function GET() {
+  await connectDB();
 
-  const result = await db.collection('users').insertOne({ name: 'Sadia'})
-  console.log(result)
-  console.log('Hello')
+  const result = await mongoose.connection.db.collection("todos").insertOne({ title: 'Learn Node JS', completed: false });
+
 
   const todoJSONString = await readFile("./todos.json", "utf-8");
   const todos = JSON.parse(todoJSONString);
-  return Response.json(todos);
+  return Response.json(result);
 }
 
 export async function POST(request) {

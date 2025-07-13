@@ -4,7 +4,13 @@ const DB_URL = "mongodb+srv://root:root@cluster0.klfbmop.mongodb.net/?retryWrite
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect(DB_URL)
+        if(mongoose.connection.readyState === 1) {
+            console.log('Already Connected');
+            return;
+        }
+        await mongoose.connect(DB_URL, {
+            dbName: 'todoApp'
+        })
         console.log('Database Connected!');
     } catch (error) {
         console.log(error)
@@ -12,5 +18,6 @@ export const connectDB = async () => {
         process.exit(1);
     }
 }
+
 
 
