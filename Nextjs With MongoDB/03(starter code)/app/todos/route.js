@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import todos from "../../todos";
 import { connectDB } from "@/lib/connectDB";
 import Todo from "@/models/todoModel";
+import { LucideHash } from "lucide-react";
 
 export async function GET() {
   await connectDB();
@@ -13,7 +14,7 @@ export async function GET() {
 
   const allTodo = await Todo.find()
 
-  return Response.json([]);
+  return Response.json(allTodo.map(({ id, text, completed }) => ({ id, text, completed })));
 }
 
 export async function POST(request) {
