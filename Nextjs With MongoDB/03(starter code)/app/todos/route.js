@@ -11,13 +11,9 @@ export async function GET() {
     text: "Learn TypeScript",
   });
 
-  console.log(newTodo);
-  console.log("object");
-  console.log("Hii");
+  const allTodo = await Todo.find()
 
-  const todoJSONString = await readFile("./todos.json", "utf-8");
-  const todos = JSON.parse(todoJSONString);
-  return Response.json(newTodo);
+  return Response.json([]);
 }
 
 export async function POST(request) {
