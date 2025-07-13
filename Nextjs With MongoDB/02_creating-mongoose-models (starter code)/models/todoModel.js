@@ -1,8 +1,14 @@
 import mongoose from "mongoose";
 
 const Todo = mongoose.model("Todo", {
-    text: String,
-    completed: Boolean,
+    text: {
+        type: String,
+        required: true,
+    },
+    completed: {
+        type: Boolean,
+        default: false,
+    },
 })
 
 
