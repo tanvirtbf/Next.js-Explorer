@@ -1,9 +1,9 @@
-import { writeFile } from "node:fs/promises";
-import todos from "../../../todos";
+import Todo from "@/models/todoModel";
+
 
 export async function GET(_, { params }) {
   const { id } = await params;
-  const todo = todos.find((todo) => id === todo.id);
+  const todo = await Todo.findById(id);
 
   if (!todo) {
     return Response.json(
@@ -40,10 +40,7 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(_, { params }) {
   const { id } = await params;
-  const todoIndex = todos.findIndex((todo) => id === todo.id);
-
-  todos.splice(todoIndex, 1);
-  await writeFile("todos.json", JSON.stringify(todos, null, 2));
+  const todoIndex = await Todo.findByIdAndDelete(id);
   return new Response(null, {
     status: 204,
   });
