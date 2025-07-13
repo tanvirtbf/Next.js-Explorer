@@ -21,6 +21,6 @@ export async function POST(request, response) {
         name, email, password
     })
 
-    return new Response(JSON.stringify(newUser), { status: 201 });
+    return new Response(JSON.stringify(newUser), { status: 201, success: true });
     
 }
