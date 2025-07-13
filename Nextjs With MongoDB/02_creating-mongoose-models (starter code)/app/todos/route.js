@@ -2,15 +2,20 @@ import { readFile, writeFile } from "node:fs/promises";
 import todos from "../../todos";
 import { connectDB } from "@/lib/connectDB";
 import Todo from "@/models/todoModel";
-Todo
 
 export async function GET() {
   await connectDB();
-  const result = await Todo.find();
+  // const result = await Todo.find();
+
+  const newTodo = await Todo.create({ 
+    text: "Learn Next.js" 
+  });
+
+  console.log(newTodo);
 
   const todoJSONString = await readFile("./todos.json", "utf-8");
   const todos = JSON.parse(todoJSONString);
-  return Response.json(result);
+  return Response.json(newTodo);
 }
 
 export async function POST(request) {

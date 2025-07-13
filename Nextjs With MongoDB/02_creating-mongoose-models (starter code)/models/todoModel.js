@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Todo = mongoose.model("Todo", {
+const Todo = mongoose.models.Todo || mongoose.model("Todo", {
     text: {
         type: String,
         required: true,
