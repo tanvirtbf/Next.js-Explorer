@@ -6,11 +6,6 @@ import { LucideHash } from "lucide-react";
 
 export async function GET() {
   await connectDB();
-  // const result = await Todo.find();
-  // console.log(result);
-  const newTodo = await Todo.create({
-    text: "Learn TypeScript",
-  });
 
   const allTodo = await Todo.find()
 
@@ -19,15 +14,10 @@ export async function GET() {
 
 export async function POST(request) {
   const todo = await request.json();
-  const newTodo = {
-    id: crypto.randomUUID(),
-    text: todo.text,
-    completed: false,
-  };
+  const { id, text, completed } = await Todo.create({ text: todo.text });
 
-  todos.push(newTodo);
-  await writeFile("todos.json", JSON.stringify(todos, null, 2));
-  return Response.json(newTodo, {
+
+  return Response.json({ id, text, completed }, {
     status: 201,
   });
 }
