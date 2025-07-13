@@ -13,6 +13,8 @@ export async function GET() {
 }
 
 export async function POST(request) {
+  await connectDB();
+
   const todo = await request.json();
   const { id, text, completed } = await Todo.create({ text: todo.text });
 
