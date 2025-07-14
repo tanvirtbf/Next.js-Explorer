@@ -15,7 +15,9 @@ export default function Home() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await fetch("/api/todos");
+    const response = await fetch("/api/todos", {
+      credentials: "include",
+    });
     const todosData = await response.json();
     setTodos(todosData.reverse());
   };

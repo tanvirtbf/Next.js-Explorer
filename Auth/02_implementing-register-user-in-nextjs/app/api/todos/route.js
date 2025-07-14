@@ -1,21 +1,27 @@
 import { connectDB } from "@/lib/connectDB";
 import Todo from "@/models/todoModel";
+import { cookies } from "next/headers";
 
 export async function GET(request) {
   await connectDB();
   const allTodos = await Todo.find();
 
-  console.log(request.headers.get('cookie'));
+  const myCookie = await cookies();
+  myCookie.set('class', 'nextjs', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax'
+  });
+  console.log(myCookie.get('age'));
 
-  const response = new Response(JSON.stringify(allTodos.map(({ id, text, completed }) => ({ id, text, completed }))), {
+  // console.log(request.headers.get('cookie'))
+
+  return new Response(JSON.stringify(allTodos.map(({ id, text, completed }) => ({ id, text, completed }))), {
     headers: {
-      "Content-Type": "application/json",
-      "Set-Cookie": "name=tanvir"
+      'Content-Type': 'application/json',
+      'Set-Cookie': 'age=tanvir'
     }
-  })
-
-  return response;
-
+  });
 
 }
 
