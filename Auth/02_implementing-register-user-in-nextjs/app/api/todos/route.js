@@ -5,9 +5,16 @@ export async function GET() {
   await connectDB();
   const allTodos = await Todo.find();
 
-  return Response.json(
-    allTodos.map(({ id, text, completed }) => ({ id, text, completed }))
-  );
+  return new Response(JSON.stringify([]), {
+    headers: {
+      "Set-Cookie": "userID=1234; path=/; httpOnly;",
+      "Set-Cookie": "userName=John; path=/; httpOnly;",
+    }
+  })
+
+  // return Response.json(
+  //   allTodos.map(({ id, text, completed }) => ({ id, text, completed }))
+  // );
 }
 
 export async function POST(request) {
