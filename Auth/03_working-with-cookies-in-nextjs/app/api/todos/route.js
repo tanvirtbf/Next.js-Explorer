@@ -8,6 +8,14 @@ export async function GET(request) {
   const allTodos = await Todo.find();
 
   const userId =  cookieStore.get("userId")?.value;
+  if (!userId) {
+    return Response.json(
+      { message: "User not authenticated" },
+      {
+        status: 401,
+      }
+    );
+  }
 
   return Response.json(
     allTodos.map(({ id, text, completed }) => ({ id, text, completed }))
