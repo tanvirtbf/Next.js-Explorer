@@ -17,7 +17,6 @@ export default function RegisterPage() {
       body: JSON.stringify({ name, email, password }),
     });
     const data = await response.json();
-    console.log(data);
     if (!data.error) {
       return router.push("/login");
     }

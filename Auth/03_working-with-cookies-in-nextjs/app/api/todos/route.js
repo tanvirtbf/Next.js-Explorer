@@ -7,12 +7,6 @@ export async function GET(request) {
   const cookieStore = await cookies();
   const allTodos = await Todo.find();
 
-  // console.log(cookieStore.get("userId").value);
-  cookieStore.set("userId", "1234", {
-    httpOnly: true,
-    maxAge: 5,
-  });
-
   return Response.json(
     allTodos.map(({ id, text, completed }) => ({ id, text, completed }))
   );
