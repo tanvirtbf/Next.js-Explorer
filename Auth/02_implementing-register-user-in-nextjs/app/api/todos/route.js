@@ -1,20 +1,22 @@
 import { connectDB } from "@/lib/connectDB";
 import Todo from "@/models/todoModel";
 
-export async function GET() {
+export async function GET(request) {
   await connectDB();
   const allTodos = await Todo.find();
 
-  return new Response(JSON.stringify([]), {
+  console.log(request.headers.get('cookie'));
+
+  const response = new Response(JSON.stringify(allTodos.map(({ id, text, completed }) => ({ id, text, completed }))), {
     headers: {
-      "Set-Cookie": "userID=1234; path=/; httpOnly;",
-      "Set-Cookie": "userName=John; path=/; httpOnly;",
+      "Content-Type": "application/json",
+      "Set-Cookie": "name=tanvir"
     }
   })
 
-  // return Response.json(
-  //   allTodos.map(({ id, text, completed }) => ({ id, text, completed }))
-  // );
+  return response;
+
+
 }
 
 export async function POST(request) {
