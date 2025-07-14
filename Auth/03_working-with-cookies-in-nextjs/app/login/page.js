@@ -19,8 +19,10 @@ export default function LoginPage() {
 
     const data = await response.json();
 
-    if(data.success) {
+    if(!data.error) {
       router.push('/');
+    } else {
+      router.push('/login');
     }
 
   };

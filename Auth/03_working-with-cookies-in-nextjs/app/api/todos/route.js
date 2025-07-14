@@ -7,6 +7,8 @@ export async function GET(request) {
   const cookieStore = await cookies();
   const allTodos = await Todo.find();
 
+  const userId =  cookieStore.get("userId")?.value;
+
   return Response.json(
     allTodos.map(({ id, text, completed }) => ({ id, text, completed }))
   );
