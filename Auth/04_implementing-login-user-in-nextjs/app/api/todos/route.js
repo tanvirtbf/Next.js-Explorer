@@ -8,7 +8,7 @@ export async function GET(request) {
   const cookieStore = await cookies();
 
   const userId = cookieStore.get("userId")?.value;
-  console.log({ userId });
+
   const user = await User.findById(userId);
 
   if (!user) {

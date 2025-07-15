@@ -21,7 +21,7 @@ export async function POST(request) {
       name: 'userId',
       value: user.id,
       httpOnly: true,
-      maxAge: 60,
+      maxAge: 60*60,
     })
 
     return Response.json(user, { success: true, message: "Successfully Logged In" });
