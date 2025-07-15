@@ -7,13 +7,13 @@ export async function POST(req, res) {
     const { email, password } = await req.json();
 
     if (!email || !password) {
-      return new Response("Email and password are required", { status: 400 });
+      return new Response("Email and password are required", { error: 'User created successfully', status: 400 });
     }
 
     const user = await User.findOne({ email, password });
 
     if (!user) {
-      return new Response("User not found", { status: 404 });
+      return new Response("User not found", { error: 'User created successfully', status: 404 });
     }
 
     myCookies.set({
@@ -31,6 +31,6 @@ export async function POST(req, res) {
     });
   } catch (error) {
     console.log(error);
-    return new Response("Failed to login", { status: 500 });
+    return new Response("Failed to login", { error: 'User created successfully', status: 500 });
   }
 }

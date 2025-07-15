@@ -15,14 +15,15 @@ export default function Home() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await fetch("/todos");
+    const response = await fetch("/api/todos");
     const todosData = await response.json();
+
     setTodos(todosData.reverse());
   };
 
   // Add new todo
   const addTodo = async (text) => {
-    const response = await fetch("/todos", {
+    const response = await fetch("/api/todos", {
       method: "POST",
       body: JSON.stringify({ text }),
     });
@@ -32,7 +33,7 @@ export default function Home() {
 
   // Delete todo
   const deleteTodo = async (id) => {
-    const response = await fetch(`/todos/${id}`, {
+    const response = await fetch(`/api/todos/${id}`, {
       method: "DELETE",
     });
 
@@ -44,7 +45,7 @@ export default function Home() {
   // Toggle todo completion
   const toggleTodo = async (id) => {
     const todo = todos.find((todo) => todo.id === id);
-    const response = await fetch(`/todos/${id}`, {
+    const response = await fetch(`/api/todos/${id}`, {
       method: "PUT",
       body: JSON.stringify({ completed: !todo.completed }),
     });
@@ -56,7 +57,7 @@ export default function Home() {
 
   // Update todo text
   const updateTodo = async (id, newText) => {
-    const response = await fetch(`/todos/${id}`, {
+    const response = await fetch(`/api/todos/${id}`, {
       method: "PUT",
       body: JSON.stringify({ text: newText }),
     });

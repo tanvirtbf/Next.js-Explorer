@@ -18,6 +18,12 @@ export default function LoginPage() {
       },
       body: JSON.stringify({ email, password }),
     })
+    const data = await response.json();
+    if (!response.error) {
+      return router.push("/");
+    } else {
+      return router.push("/login")
+    }
   };
 
   return (
