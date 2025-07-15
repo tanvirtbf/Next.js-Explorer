@@ -3,17 +3,16 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const router = useRouter();
-  const [name, setName] = useState("ProCodrr");
   const [email, setEmail] = useState("procodrr@gmail.com");
   const [password, setPassword] = useState("123456");
 
-  const handleRegister = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // API registration logic here
-    console.log("Registering:", { name, email, password });
-    router.push("/login");
+    // API login logic here
+    console.log("Logging in:", { email, password });
+    router.push("/dashboard");
   };
 
   return (
@@ -24,20 +23,8 @@ export default function RegisterPage() {
             Todo App
           </h1>
         </header>
-        <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        <form onSubmit={handleRegister} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              Name
-            </label>
-            <input
-              type="text"
-              className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
+        <h2 className="text-2xl font-semibold mb-4">Login</h2>
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Email
@@ -66,7 +53,7 @@ export default function RegisterPage() {
             type="submit"
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-md font-medium hover:opacity-90"
           >
-            Register
+            Login
           </button>
         </form>
       </div>
