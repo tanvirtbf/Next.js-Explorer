@@ -1,6 +1,11 @@
 import { connectDB } from "@/lib/connectDB";
 import User from "@/models/userModel";
 
+export async function GET(request, response){
+    await connectDB();
+
+}
+
 export async function POST(request, response) {
     await connectDB()
   try {

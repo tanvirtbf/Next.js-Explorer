@@ -11,8 +11,13 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     // API login logic here
-    console.log("Logging in:", { email, password });
-    router.push("/dashboard");
+    const response = await fetch('/api/login', {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
   };
 
   return (
