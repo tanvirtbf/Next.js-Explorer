@@ -7,6 +7,12 @@ import { cookies } from "next/headers";
 export async function GET(request) {
   await connectDB();
   const user = await getLoggedInUser()
+  console.log(user)
+
+  if(user instanceof Response){
+    return user
+  }
+  
   const allTodos = await Todo.find({ userId: user.id });
 
   return Response.json(
