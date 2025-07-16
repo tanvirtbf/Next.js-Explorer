@@ -1,3 +1,4 @@
+import { signCookie } from "@/lib/auth";
 import { connectDB } from "@/lib/connectDB";
 import User from "@/models/userModel";
 import { createHmac } from "crypto";
@@ -20,11 +21,7 @@ export async function POST(request) {
       );
     }
 
-    const signature = createHmac("sha256", process.env.COOKIE_SECRET).update(user.id).digest("hex");
-    console.log({signature});
-    const signedUserId = `${user.id}.${signature}`;
-
-    cookieStore.set("userId", signedUserId, {
+    cookieStore.set("userId", signCookie(user._id), {
       httpOnly: true,
       maxAge: 60 * 60 * 24,
     });
