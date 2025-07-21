@@ -1,5 +1,6 @@
 import { signCookie } from "@/lib/auth";
 import { connectDB } from "@/lib/connectDB";
+import Session from "@/models/sessionModel";
 import User from "@/models/userModel";
 import { createHmac } from "crypto";
 import { cookies } from "next/headers";
@@ -19,6 +20,10 @@ export async function POST(request) {
         }
       );
     }
+
+    const session = await Session.create({ userId: user._id})
+
+    console.log('Session : ', session)
 
     cookieStore.set("userId", signCookie(user.id), {
       httpOnly: true,
