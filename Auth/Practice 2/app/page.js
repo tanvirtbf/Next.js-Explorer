@@ -15,55 +15,27 @@ export default function Home() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await fetch("/todos");
-    const todosData = await response.json();
-    setTodos(todosData.reverse());
+
   };
 
   // Add new todo
   const addTodo = async (text) => {
-    const response = await fetch("/todos", {
-      method: "POST",
-      body: JSON.stringify({ text }),
-    });
-    const newTodo = await response.json();
-    setTodos([newTodo, ...todos]);
+
   };
 
   // Delete todo
   const deleteTodo = async (id) => {
-    const response = await fetch(`/todos/${id}`, {
-      method: "DELETE",
-    });
 
-    if (response.status === 204) {
-      fetchTodos();
-    }
   };
 
   // Toggle todo completion
   const toggleTodo = async (id) => {
-    const todo = todos.find((todo) => todo.id === id);
-    const response = await fetch(`/todos/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ completed: !todo.completed }),
-    });
 
-    if (response.status === 200) {
-      fetchTodos();
-    }
   };
 
   // Update todo text
   const updateTodo = async (id, newText) => {
-    const response = await fetch(`/todos/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ text: newText }),
-    });
 
-    if (response.status === 200) {
-      fetchTodos();
-    }
   };
 
   return (
