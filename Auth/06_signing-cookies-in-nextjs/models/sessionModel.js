@@ -7,6 +7,11 @@ const Session =
       type: Schema.Types.ObjectId,
       required: true,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      expires: 60 * 60 * 24 * 7,
+    }
   });
 
 export default Session;

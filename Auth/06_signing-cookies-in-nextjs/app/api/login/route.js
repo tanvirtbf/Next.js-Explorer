@@ -21,9 +21,17 @@ export async function POST(request) {
       );
     }
 
+    
     const session = await Session.create({ userId: user._id})
+    
+    const allSession = await Session.find({ userId: user._id });
+    console.log(allSession)
 
-    cookieStore.set("userId", signCookie(user.id), {
+    if(allSession.length > 2) {
+      await Session.deleteOne({ _id: allSession[0]._id });
+    }
+
+    cookieStore.set("userId", signCookie(session.id), {
       httpOnly: true,
       maxAge: 60 * 60 * 24,
     });
