@@ -16,7 +16,6 @@ export default function LoginPage() {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    console.log(data);
     if (response.status === 401) {
       return router.push("/login");
     }

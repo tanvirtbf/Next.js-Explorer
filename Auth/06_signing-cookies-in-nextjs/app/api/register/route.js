@@ -10,7 +10,6 @@ export async function POST(request) {
       status: 201,
     });
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       return Response.json(
         { error: "Email already exists" },
