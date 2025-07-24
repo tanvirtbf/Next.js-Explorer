@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DB_URI = "mongodb://admin:admin@localhost/todoApp?authSource=admin";
+const DB_URI = "mongodb+srv://root:root@cluster0.klfbmop.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 export const connectDB = async () => {
   try {
