@@ -96,6 +96,16 @@ export default function Home() {
     }
   };
 
+  const handleLogout = async () => {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      body: JSON.stringify({ email: user.email }),
+    });
+    if (response.status === 200) {
+      return router.push("/login");
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
       <div className="w-full max-w-lg">
@@ -134,9 +144,7 @@ export default function Home() {
                     {user.email}
                   </div>
                   <button
-                    onClick={() => {
-                      console.log("Logging out");
-                    }}
+                    onClick={handleLogout}
                     className="w-full text-left text-red-500 hover:underline text-sm cursor-pointer"
                   >
                     Logout
