@@ -1,12 +1,12 @@
+import { getUserSessionId } from "@/lib/auth";
 import Session from "@/models/sessionModel";
 import { cookies } from "next/headers"
 
 
 export const POST = async (req, res) => {
-    const myCookies = await cookies();
-    const { email } = await req.json();
+    const sessionId = await getUserSessionId()
+    await Session.findByIdAndDelete(sessionId)
+    await cookies().delete('userId')
 
-    myCookies.delete("userId")
-
-    return new Response(JSON.stringify({status: 200, message: "Logged out"}))
+    return Response.json({ status: 200, sessionId })
 }

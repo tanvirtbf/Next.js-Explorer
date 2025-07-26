@@ -99,8 +99,9 @@ export default function Home() {
   const handleLogout = async () => {
     const response = await fetch("/api/logout", {
       method: "POST",
-      body: JSON.stringify({ email: user.email }),
     });
+    const data = await response.json();
+    // console.log(data);
     if (response.status === 200) {
       return router.push("/login");
     }
