@@ -4,9 +4,10 @@ import { cookies } from "next/headers"
 
 
 export const POST = async (req, res) => {
+    const cookieStore = await cookies()
     const sessionId = await getUserSessionId()
     await Session.findByIdAndDelete(sessionId)
-    await cookies().delete('userId')
+    cookieStore.delete('userId')
 
     return Response.json({ status: 200, sessionId })
 }

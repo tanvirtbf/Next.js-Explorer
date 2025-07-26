@@ -100,9 +100,7 @@ export default function Home() {
     const response = await fetch("/api/logout", {
       method: "POST",
     });
-    const data = await response.json();
-    // console.log(data);
-    if (response.status === 200) {
+    if (response.status === 204) {
       return router.push("/login");
     }
   }
