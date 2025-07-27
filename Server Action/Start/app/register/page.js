@@ -4,7 +4,9 @@ export default function RegisterPage() {
 
   async function registerUser(formData){
     "use server";
-    console.log(formData);
+    console.log('Name : ',formData.get('name'));
+    console.log('Email : ',formData.get('email'));
+    console.log('Password : ',formData.get('password'));
     return {message: "Got the data"};
   }
 
@@ -17,7 +19,7 @@ export default function RegisterPage() {
           </h1>
         </header>
         <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        <form action={registerUser} className="space-y-4">
+        <form  className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Name
@@ -59,6 +61,7 @@ export default function RegisterPage() {
           </div>
           <button
             type="submit"
+            formAction={registerUser}
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-md font-medium hover:opacity-90"
           >
             Register
