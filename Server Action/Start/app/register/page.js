@@ -2,6 +2,14 @@ import Link from "next/link";
 
 export default function RegisterPage() {
 
+  async function registerUser(formData){
+    'use server';
+    console.log('Name : ',formData.get('name'));
+    console.log('Email : ',formData.get('email'));
+    console.log('Password : ',formData.get('password'));
+    return { message: "Got the Data!" };
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
       <div className="w-full max-w-lg">
@@ -11,13 +19,16 @@ export default function RegisterPage() {
           </h1>
         </header>
         <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        <form  className="space-y-4">
+        <form action={registerUser} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Name
             </label>
             <input
               type="text"
+              name="name"
+              required
+              defaultValue={'Tanvir Ahmed'}
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
             />
           </div>
@@ -27,6 +38,9 @@ export default function RegisterPage() {
             </label>
             <input
               type="email"
+              name="email"
+              required
+              defaultValue={'tanvir@gmail.com'}
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
             />
           </div>
@@ -36,6 +50,9 @@ export default function RegisterPage() {
             </label>
             <input
               type="password"
+              name="password"
+              required
+              defaultValue={'123456'}
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
             />
           </div>
