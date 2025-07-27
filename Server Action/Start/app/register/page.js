@@ -1,14 +1,11 @@
+"use client"
+
 import Link from "next/link";
+import { registerUser } from "./actions";
 
 export default function RegisterPage() {
 
-  async function registerUser(formData){
-    'use server';
-    console.log('Name : ',formData.get('name'));
-    console.log('Email : ',formData.get('email'));
-    console.log('Password : ',formData.get('password'));
-    return { message: "Got the Data!" };
-  }
+
 
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
