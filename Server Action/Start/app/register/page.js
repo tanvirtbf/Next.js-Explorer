@@ -2,14 +2,6 @@ import Link from "next/link";
 
 export default function RegisterPage() {
 
-  async function registerUser(formData){
-    "use server";
-    console.log('Name : ',formData.get('name'));
-    console.log('Email : ',formData.get('email'));
-    console.log('Password : ',formData.get('password'));
-    return {message: "Got the data"};
-  }
-
   return (
     <div className="min-h-screen flex flex-col items-center py-8 px-4 sm:px-6">
       <div className="w-full max-w-lg">
@@ -26,11 +18,7 @@ export default function RegisterPage() {
             </label>
             <input
               type="text"
-              name="name"
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
-              value="Tanvir"
-              readOnly
-              required
             />
           </div>
           <div>
@@ -39,11 +27,7 @@ export default function RegisterPage() {
             </label>
             <input
               type="email"
-              name="email"
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
-              value="tanvir@gmail.com"
-              readOnly
-              required
             />
           </div>
           <div>
@@ -52,16 +36,11 @@ export default function RegisterPage() {
             </label>
             <input
               type="password"
-              name="password"
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
-              value="123456"
-              readOnly
-              required
             />
           </div>
           <button
             type="submit"
-            formAction={registerUser}
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-md font-medium hover:opacity-90"
           >
             Register
