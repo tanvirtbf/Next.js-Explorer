@@ -3,12 +3,20 @@
 import { useActionState, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { registerUser } from "../actions/userActions";
+import { userRegister } from "../actions/userActions";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [state, formAction, isPending] = useActionState(registerUser, {})
-  console.log(state);
+
+  // const [state, formAction, isPending] = useActionState(userRegister, { message: "" });
+  // console.log(state)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = await userRegister({name: 'Tanvir Ahmed', email: 'tanvir@gmail.com', password: '123456'});
+    console.log(data);
+  }
+
   const [name, setName] = useState("ProCodrr");
   const [email, setEmail] = useState("procodrr@gmail.com");
   const [password, setPassword] = useState("123456");
@@ -22,16 +30,16 @@ export default function RegisterPage() {
           </h1>
         </header>
         <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        <form action={formAction} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Name
             </label>
             <input
               type="text"
+              name="name"
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
               value={name}
-              name="name"
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -42,9 +50,9 @@ export default function RegisterPage() {
             </label>
             <input
               type="email"
+              name="email"
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
               value={email}
-              name="email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -55,21 +63,21 @@ export default function RegisterPage() {
             </label>
             <input
               type="password"
+              name="password"
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
               value={password}
-              name="password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
+          {/* <p>{state?.message}</p> */}
           <button
             type="submit"
-            disabled={isPending}
+            // disabled={isPending}
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 disabled:opacity-25 disabled:cursor-not-allowed rounded-md font-medium hover:opacity-90"
           >
             Register
           </button>
-          <p>{state?.message}</p>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
           Already have an account?{" "}
